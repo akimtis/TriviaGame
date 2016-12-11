@@ -19,13 +19,8 @@ var incorrect = 0;
 var unanswered = 0;
 var timerNumber = 30;
 var counter;
-
-var useranswers = [];
-var answered = 0;
-
-var questions = [];
-var choices = [];
-var answer = [];
+var questionNumber = 0;
+var userClick = $(".userChoice").on("click", this)
 
 var questions = [{
     question: "1) The Chihuahuan Desert has...",
@@ -60,11 +55,36 @@ var questions = [{
     answer: 2
 }];
 
+var currentQuestion = function(num) {
+   runTimer()
+    $("#questions").append(questions[num].question);
+    $("#choices1").append(questions[num].choices[0]);
+    $("#choices2").append(questions[num].choices[1]);
+    $("#choices3").append(questions[num].choices[2]);
+    $("#choices4").append(questions[num].choices[3]);
+  var timeout = setTimeout(function(),30000);
+} 
+
+// var currentAnswer = function(num) {
+//  if (userClick == questions[num].answer) {
+//   wins++;
+//   console.log("Correct!");
+ 
+//   }
+  
+//   if (userClick != questions[num].answer) {
+//   losses++;
+//   console.log("Incorrect!");
+//   }
+  
+//   if (timeout) {
+//     unanswered ++;
+//   } 
+// }
 
 
-$("#start").on("click", runTimer);
 
-function runTimer() {
+var runTimer = function() {
       counter = setInterval(decrement, 1000);
     }
     //  The decrement function.
@@ -77,8 +97,7 @@ function runTimer() {
       if (timerNumber === 0) {
         //  ...run the stop function.
         stop();
-        //  Alert the user that time is up.
-        alert("Time Up!");
+        
       }
     }
 
@@ -88,135 +107,51 @@ function stop() {
       //  to the clearInterval function.
       clearInterval(counter);
     }
-//on click listen and run funciton runQuiz
-$("#start").on("click", runQuiz, runTimer, stop);
+//on click listen and run funciton runQuiz, which creates divs for each question
+//and buttons for each choice 
 
-function runQuiz(){
+$(document).ready(function(){
 
-  $(#questions).empty();
+$("#start").on("click", currentQuestion(questionNumber));
 
-  for (i-0; i<questions.length; i++) {
-    var a = $("<button>");
-      // Adding a class of movie to our button
-          a.addClass("question");
-          // Adding a data-attribute
-          a.attr("data-name", question[i]);
-          // Providing the initial button text
-          a.text(question[i]);
-          // Adding the button to the HTML
-          $("#questions").append(a);
-        }
+
+
+})
+
+$("#")
+
+// function runQuiz(){
+          
+
+  //$(#questions).empty();
+
+  // for (i=0; i<questions.length; i++) {
+  //   var a = $("<h1>");
+  //     // Adding a class of movie to our button
+  //         a.addClass("question");
+  //         // Adding a data-attribute
+  //         a.attr("data-name", questions[i].question);
+  //         // Providing the initial button text
+  //         a.text(questions[i]);
+  //         // Adding the button to the HTML
+  //         $("#questions").append(a);
+  //         console.log(questions[i].question)
+  //   }
   
-  for(j=0; j<choices.length; j++) {
-    var b = $("<button>");
-      // Adding a class of movie to our button
-          b.addClass("question");
-          // Adding a data-attribute
-          b.attr("data-name", choices[j]);
-          // Providing the initial button text
-          b.text(choices[j]);
-          // Adding the button to the HTML
-          $("#questions").appendChild(b);
-      }
-  
-  console.log(runQuiz)
-  $(#questions).append('<p class="question">' + "questions[i]" + "</p>");
-  $(#questions).appendChild("<p class="choice">" + "choices[i]" + "</p>");
-}
+  // for(j=0; j<questions.choices.length; j++) {
+  //   var b = $("<button>");
+  //     // Adding a class of movie to our button
+  //         b.addClass("choice");
+  //         // Adding a data-attribute
+  //         b.attr("data-name", choices[j]);
+  //         // Providing the initial button text
+  //         b.text(choices[j]);
+  //         // Adding the button to the HTML
+  //         $("#questions").appendChild(b);
+  //     }
+
+
+
  
-if (userClick == answer) {
-  wins++;
-  alert("Correct!");
- 
-  //refresh()
-  }
-  
-  if (userClick != answer) {
-  losses++;
-  alert("Incorrect!");
-
-  };
 
 
-$(document).on("click", ".question", runQuiz);
-
-
-// function renderQuiz() {
-//   for(i=0;i<questions.length;i++) {
-//     document.writeln('<p class="question">' + questions[i] + ' <span id="result_' + i + '"><img src="blank.gif" style="border:0" alt="" /></span></p>');
-//     for(j=0;j<choices[i].length;j++) {
-//       document.writeln('<input type="radio" name="answer_' + i + '" value="' + choices[i][j] + '" id="answer_' + i + '_' + j + '" class="question_' + i + '" onclick="submitAnswer(' + i + ', this, \'question_' + i + '\', \'label_' + i + '_' + j + '\')" /><label id="label_' + i + '_' + j + '" for="answer_' + i + '_' + j + '"> ' + choices[i][j] + '</label><br />');
-//     }
-//   }
-//   document.writeln('<p><input type="submit" value="Show Score" onclick="showScore()" /> <input type="submit" value="Reset Quiz" onclick="resetQuiz(true)" /></p><p style="display:none"><img src="correct.gif" style="border:0" alt="Correct!" /><img src="incorrect.gif" style="border:0" alt="Incorrect!" /></p>');
-// }
-// function resetQuiz(showConfirm) {
-//   if(showConfirm)
-//     if(!confirm("Are you sure you want to reset your answers and start from the beginning?"))
-//       return false;
-//   document.location = document.location;
-// }
-// function submitAnswer(questionId, obj, classId, labelId) {
-//   useranswers[questionId] = obj.value;
-//   document.getElementById(labelId).style.fontWeight = "bold";
-//   disableQuestion(classId);
-//   showResult(questionId);
-//   answered++;
-// }
-// function showResult(questionId) {
-//   if(answers[questionId] == useranswers[questionId]) {
-//     document.getElementById('result_' + questionId).innerHTML = '<img src="correct.gif" style="border:0" alt="Correct!" />';
-//   } else {
-//     document.getElementById('result_' + questionId).innerHTML = '<img src="incorrect.gif" style="border:0" alt="Incorrect!" />';
-//   }
-// }
-// function showScore() {
-//   if(answered != answers.length) {
-//     alert("You have not answered all of the questions yet!");
-//     return false;
-//   }
-//   questionCount = answers.length;
-//   correct = 0;
-//   incorrect = 0;
-//   for(i=0;i<questionCount;i++) {
-//     if(useranswers[i] == answers[i])
-//       correct++;
-//     else
-//       incorrect++;
-//   }
-//   pc = Math.round((correct / questionCount) * 100);
-//   alertMsg = "You scored " + correct + " out of " + questionCount + "\n\n";
-//   alertMsg += "You correctly answered " + pc + "% of the questions! \n\n";
-//   if(pc == 100)
-//     alertMsg += response[0];
-//   else if(pc >= 90)
-//     alertMsg += response[1];
-//   else if(pc >= 70)
-//     alertMsg += response[2];
-//   else if(pc > 50)
-//     alertMsg += response[3];
-//   else if(pc >= 40)
-//     alertMsg += response[4];
-//   else if(pc >= 20)
-//     alertMsg += response[5];
-//   else if(pc >= 10)
-//     alertMsg += response[6];
-//   else
-//     alertMsg += response[7];
-//   if(pc < 100) {
-//     if(confirm(alertMsg))
-//       resetQuiz(false);
-//     else
-//       return false;
-//   } else {
-//     alert(alertMsg);
-//   }
-// }
-// function disableQuestion(classId) {
-//   var alltags=document.all? document.all : document.getElementsByTagName("*")
-//   for (i=0; i<alltags.length; i++) {
-//     if (alltags[i].className == classId) {
-//       alltags[i].disabled = true;
-//     }
-//   }
-// }
