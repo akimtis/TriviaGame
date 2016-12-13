@@ -62,10 +62,15 @@ var currentQuestion = function(num) {
     $("#choices2").append(questions[num].choices[1]);
     $("#choices3").append(questions[num].choices[2]);
     $("#choices4").append(questions[num].choices[3]);
-  var timeout = setTimeout(function(),30000);
+  //var timeout = setTimeout(function(),30000);
 } 
 
-// var currentAnswer = function(num) {
+var currentAnswer = function(num) {
+  $("#questions").append(questions[num].answer);
+  $(".userChoice").empty();
+  $("#answers").append("Next Question");
+
+}
 //  if (userClick == questions[num].answer) {
 //   wins++;
 //   console.log("Correct!");
@@ -91,8 +96,8 @@ var runTimer = function() {
     function decrement() {
       //  Decrease number by one.
       timerNumber--;
-      //  Show the number in the #show-number tag.
-      $("#timer").html("<h2>" + "Time Remaining: " + timerNumber + " seconds" + "</h2>");
+      //  Show the number in the #timer tag.
+      $("#timer").html("<h2>" + "Time Left: " + timerNumber + " seconds" + "</h2>");
       //  Once number hits zero...
       if (timerNumber === 0) {
         //  ...run the stop function.
@@ -114,11 +119,11 @@ $(document).ready(function(){
 
 $("#start").on("click", currentQuestion(questionNumber));
 
-
+$(".userChoice").on("click", currentAnswer(quesitonNumber.answer));
 
 })
 
-$("#")
+
 
 // function runQuiz(){
           
