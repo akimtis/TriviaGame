@@ -50,22 +50,23 @@ var questions = [{
       "Expanding their sturcture to store water"],
     answer: 1
 }, {
-    question: "6) Many of the animals in the desert are active at twilight. This means they are...",
+    question: "5) Many of the animals in the desert are active at twilight. This means they are...",
     choices: ["nocturnal", "diurnal", "crepuscular", "hungry"],
     answer: 2
 }];
 
-var currentQuestion = function(num) {
+var currentQuestion = function() {
    runTimer()
-    $("#questions").append(questions[num].question);
-    $("#choices1").append(questions[num].choices[0]);
-    $("#choices2").append(questions[num].choices[1]);
-    $("#choices3").append(questions[num].choices[2]);
-    $("#choices4").append(questions[num].choices[3]);
+    $("#questions").append(questions[questionNumber].question);
+    $("#choices1").append(questions[questionNumber].choices[0]);
+    $("#choices2").append(questions[questionNumber].choices[1]);
+    $("#choices3").append(questions[questionNumber].choices[2]);
+    $("#choices4").append(questions[questionNumber].choices[3]);
   //var timeout = setTimeout(function(),30000);
 } 
 
 var currentAnswer = function(num) {
+
   $("#questions").append(questions[num].answer);
   $(".userChoice").empty();
   $("#answers").append("Next Question");
@@ -117,9 +118,11 @@ function stop() {
 
 $(document).ready(function(){
 
-$("#start").on("click", currentQuestion(questionNumber));
+$("#start").on("click", currentQuestion);
 
-$(".userChoice").on("click", currentAnswer(quesitonNumber.answer));
+
+
+$(".userChoice").on("click", currentAnswer);
 
 })
 
