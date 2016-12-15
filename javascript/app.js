@@ -65,13 +65,13 @@ var currentQuestion = function() {
   //var timeout = setTimeout(function(),30000);
 } 
 
-var currentAnswer = function(num) {
+var currentAnswer = function() {
 
   $("#questions").append(questions[num].answer);
-  $(".userChoice").empty();
+  // $(".userChoice").empty();
   $("#answers").append("Next Question");
 
-}
+
 //  if (userClick == questions[num].answer) {
 //   wins++;
 //   console.log("Correct!");
@@ -87,7 +87,7 @@ var currentAnswer = function(num) {
 //     unanswered ++;
 //   } 
 // }
-
+}
 
 
 var runTimer = function() {
@@ -119,8 +119,6 @@ function stop() {
 $(document).ready(function(){
 
 $("#start").on("click", currentQuestion);
-
-
 
 $(".userChoice").on("click", currentAnswer);
 
