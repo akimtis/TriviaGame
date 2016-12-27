@@ -3,24 +3,21 @@
   width: 100%;
 }
 
-.jumbotron{
-height: 75px ;
-
-}
 
 h1{
 text-align: center;
+font-size: 70px;
 }
 
 h2{
   text-align: center;
 }
 
-.jumbotron h1{
-  color: black;
-  margin: 0 auto 0 auto;
-
+h3{
+  text-align: center;
 }
+
+
 
 button {
   width: 55%;
